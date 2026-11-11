@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillHub - Campus & Freelance Marketplace</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Skill<span>Hub</span></a>
+
+            <button class="hamburger-btn" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links">
+                <li><a href="#services">Explore Services</a></li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#" class="btn btn-primary">Join Marketplace</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <span class="badge">Campus & Freelance Marketplace</span>
+            <h1>Find local talent, services, <br>& campus gigs fast.</h1>
+            <p>From custom software builds to lab report help and media design, connect directly with student creators
+                and freelancers.</p>
+
+            <form class="search-bar" action="" method="GET">
+                <input type="text" name="q"
+                    placeholder="What service are you looking for today? (e.g., Python, Design)">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+    </section>
+
+    <main class="container" id="services">
+        <div class="controls-section">
+            <div class="categories-filter">
+                <a href="?" class="cat-btn active">All Gigs</a>
+                <a href="?category=programming" class="cat-btn">Programming</a>
+                <a href="?category=design" class="cat-btn">Design</a>
+                <a href="?category=writing" class="cat-btn">Writing</a>
+                <a href="?category=tutoring" class="cat-btn">Tutoring</a>
+            </div>
+        </div>
+
+        <div class="services-grid" id="services-grid">
+
+            <div class="service-card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&auto=format&fit=crop&q=60"
+                        alt="Django & REST API Development">
+                    <button class="favorite-btn">&#9829;</button>
+                </div>
+                <div class="card-body">
+                    <div class="owner-info">
+                        <div class="owner-avatar"></div>
+                        <span class="owner-name">Ashom A.</span>
+                    </div>
+                    <a href="#" class="service-title">Django & REST API Development</a>
+                    <div class="rating">
+                        <span>★</span>
+                        <span>4.9</span>
+                        <span class="rating-count">(18)</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="badge">Programming</span>
+                        <span class="price-tag">&#8358;15,000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&auto=format&fit=crop&q=60"
+                        alt="UI/UX & Mobile App Wireframing">
+                    <button class="favorite-btn active">&#9829;</button>
+                </div>
+                <div class="card-body">
+                    <div class="owner-info">
+                        <div class="owner-avatar"></div>
+                        <span class="owner-name">Sunday A.</span>
+                    </div>
+                    <a href="#" class="service-title">UI/UX & Mobile App Wireframing</a>
+                    <div class="rating">
+                        <span>★</span>
+                        <span>4.7</span>
+                        <span class="rating-count">(9)</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="badge">Design</span>
+                        <span class="price-tag">&#8358;10,000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500&auto=format&fit=crop&q=60"
+                        alt="Academic & Science Lab Report Auditing">
+                    <button class="favorite-btn">&#9829;</button>
+                </div>
+                <div class="card-body">
+                    <div class="owner-info">
+                        <div class="owner-avatar"></div>
+                        <span class="owner-name">Choji V.</span>
+                    </div>
+                    <a href="#" class="service-title">Academic & Science Lab Report Auditing</a>
+                    <div class="rating">
+                        <span>★</span>
+                        <span>5.0</span>
+                        <span class="rating-count">(12)</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="badge">Writing</span>
+                        <span class="price-tag">&#8358;5,000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500&auto=format&fit=crop&q=60"
+                        alt="Go (Golang) Microservice & CLI Setup">
+                    <button class="favorite-btn">&#9829;</button>
+                </div>
+                <div class="card-body">
+                    <div class="owner-info">
+                        <div class="owner-avatar"></div>
+                        <span class="owner-name">Musa O.</span>
+                    </div>
+                    <a href="#" class="service-title">Go (Golang) Microservice & CLI Setup</a>
+                    <div class="rating">
+                        <span>★</span>
+                        <span>4.8</span>
+                        <span class="rating-count">(6)</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="badge">Programming</span>
+                        <span class="price-tag">&#8358;20,000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <div>
+                <h3>SkillHub</h3>
+                <p>Campus &amp; freelance marketplace<br>to learn, earn, and build.</p>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">How it works</a></li>
+                    <li><a href="#">Safety</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <p>&copy; 2024 SkillHub • All rights reserved • Privacy • Terms</p>
+        </div>
+    </footer>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
