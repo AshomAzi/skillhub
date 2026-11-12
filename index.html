@@ -4,191 +4,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkillHub - Campus & Freelance Marketplace</title>
+    <meta name="theme-color" content="#f7f8f3">
+    <meta name="description"
+        content="Find trusted student talent and local freelancers for your next big idea on SkillHub.">
+    <title>SkillHub — Find your people. Make it happen.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body>
+    <header class="site-header">
+        <nav class="navbar container" aria-label="Main navigation">
+            <a href="#" class="logo" aria-label="SkillHub home">
+                <span class="logo-mark" aria-hidden="true"><img src="./img/skillhub-logo.svg" alt=""></span>
+                skill<span>hub</span>
+            </a>
 
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">Skill<span>Hub</span></a>
-
-            <button class="hamburger-btn" aria-label="Toggle navigation menu">
+            <button class="hamburger-btn" type="button" aria-label="Open navigation menu" aria-expanded="false"
+                aria-controls="primary-navigation">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
 
-            <ul class="nav-links">
-                <li><a href="#services">Explore Services</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#" class="btn btn-primary">Join Marketplace</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <div class="container">
-            <span class="badge">Campus & Freelance Marketplace</span>
-            <h1>Find local talent, services, <br>& campus gigs fast.</h1>
-            <p>From custom software builds to lab report help and media design, connect directly with student creators
-                and freelancers.</p>
-
-            <form class="search-bar" action="" method="GET">
-                <input type="text" name="q"
-                    placeholder="What service are you looking for today? (e.g., Python, Design)">
-                <button type="submit" class="btn btn-primary">Search</button>
-            </form>
-        </div>
-    </section>
-
-    <main class="container" id="services">
-        <div class="controls-section">
-            <div class="categories-filter">
-                <a href="?" class="cat-btn active">All Gigs</a>
-                <a href="?category=programming" class="cat-btn">Programming</a>
-                <a href="?category=design" class="cat-btn">Design</a>
-                <a href="?category=writing" class="cat-btn">Writing</a>
-                <a href="?category=tutoring" class="cat-btn">Tutoring</a>
-            </div>
-        </div>
-
-        <div class="services-grid" id="services-grid">
-
-            <div class="service-card">
-                <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&auto=format&fit=crop&q=60"
-                        alt="Django & REST API Development">
-                    <button class="favorite-btn">&#9829;</button>
-                </div>
-                <div class="card-body">
-                    <div class="owner-info">
-                        <div class="owner-avatar"></div>
-                        <span class="owner-name">Ashom A.</span>
-                    </div>
-                    <a href="#" class="service-title">Django & REST API Development</a>
-                    <div class="rating">
-                        <span>★</span>
-                        <span>4.9</span>
-                        <span class="rating-count">(18)</span>
-                    </div>
-                    <div class="card-footer">
-                        <span class="badge">Programming</span>
-                        <span class="price-tag">&#8358;15,000</span>
-                    </div>
+            <div class="nav-links" id="primary-navigation">
+                <a class="nav-browse" href="#services">Explore services</a>
+                <a class="nav-sell" href="#how-it-works">How it works</a>
+                <div class="nav-actions">
+                    <a class="nav-login" href="#join">Log in</a>
+                    <a href="#join" class="btn btn-primary btn-small">Join SkillHub <span aria-hidden="true">↗</span></a>
                 </div>
             </div>
+        </nav>
+    </header>
 
-            <div class="service-card">
-                <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=500&auto=format&fit=crop&q=60"
-                        alt="UI/UX & Mobile App Wireframing">
-                    <button class="favorite-btn active">&#9829;</button>
+    <main>
+        <section class="hero">
+            <div class="hero-inner container">
+                <div class="hero-copy">
+                    <div class="eyebrow"><span class="eyebrow-dot"></span> GOOD WORK, RIGHT AROUND YOU</div>
+                    <h1>Big ideas need<br>the <span>right people.</span></h1>
+                    <p class="hero-description">Find talented students and independent creators ready to turn your
+                        next idea into something real.</p>
+
+                    <form class="search-bar" id="service-search" role="search">
+                        <label class="sr-only" for="search-query">What do you need help with?</label>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <path d="m16 16 4 4"></path>
+                        </svg>
+                        <input id="search-query" type="search" name="q"
+                            placeholder="Try “logo design” or “Python tutor”">
+                        <button type="submit" class="btn btn-primary">Find a pro <span aria-hidden="true">→</span></button>
+                    </form>
+
+                    <div class="popular-searches">
+                        <span>Popular:</span>
+                        <button type="button" data-search-term="design">Design</button>
+                        <button type="button" data-search-term="development">Development</button>
+                        <button type="button" data-search-term="tutoring">Tutoring</button>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="owner-info">
-                        <div class="owner-avatar"></div>
-                        <span class="owner-name">Sunday A.</span>
+
+                <div class="hero-visual" aria-label="A collaborative team working together">
+                    <div class="hero-image">
+                        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+                            alt="A small creative team collaborating around a laptop">
+                        <div class="image-caption">
+                            <span class="caption-icon" aria-hidden="true">✳</span>
+                            <span><strong>Good things happen together.</strong><small>Find your next collaborator</small></span>
+                        </div>
                     </div>
-                    <a href="#" class="service-title">UI/UX & Mobile App Wireframing</a>
-                    <div class="rating">
-                        <span>★</span>
-                        <span>4.7</span>
-                        <span class="rating-count">(9)</span>
+                    <div class="floating-note rating-note">
+                        <span class="note-stars" aria-hidden="true">★★★★★</span>
+                        <span><strong>Real people,</strong><small>real good work</small></span>
                     </div>
-                    <div class="card-footer">
-                        <span class="badge">Design</span>
-                        <span class="price-tag">&#8358;10,000</span>
+                    <div class="floating-note talent-note">
+                        <div class="talent-avatars" aria-hidden="true"><span>AD</span><span>MK</span><span>+</span></div>
+                        <span><strong>Your next go-to team</strong><small>Starts right here</small></span>
                     </div>
+                    <span class="hero-sparkle sparkle-one" aria-hidden="true">✳</span>
+                    <span class="hero-sparkle sparkle-two" aria-hidden="true">✦</span>
                 </div>
             </div>
+            <div class="hero-bottom container" id="how-it-works">
+                <span><strong>One community.</strong> So many ways to make it happen.</span>
+                <a href="#services">Meet the community <span aria-hidden="true">↓</span></a>
+            </div>
+        </section>
 
-            <div class="service-card">
-                <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500&auto=format&fit=crop&q=60"
-                        alt="Academic & Science Lab Report Auditing">
-                    <button class="favorite-btn">&#9829;</button>
+        <section class="services-section container" id="services">
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">THE COMMUNITY MARKETPLACE</span>
+                    <h2>Find the help you need.</h2>
+                    <p>Good people. Great skills. All in one place.</p>
                 </div>
-                <div class="card-body">
-                    <div class="owner-info">
-                        <div class="owner-avatar"></div>
-                        <span class="owner-name">Choji V.</span>
-                    </div>
-                    <a href="#" class="service-title">Academic & Science Lab Report Auditing</a>
-                    <div class="rating">
-                        <span>★</span>
-                        <span>5.0</span>
-                        <span class="rating-count">(12)</span>
-                    </div>
-                    <div class="card-footer">
-                        <span class="badge">Writing</span>
-                        <span class="price-tag">&#8358;5,000</span>
-                    </div>
-                </div>
+                <a class="text-link" href="#services">Explore all services <span aria-hidden="true">→</span></a>
             </div>
 
-            <div class="service-card">
-                <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500&auto=format&fit=crop&q=60"
-                        alt="Go (Golang) Microservice & CLI Setup">
-                    <button class="favorite-btn">&#9829;</button>
+            <div class="marketplace-controls">
+                <div class="categories-filter" role="group" aria-label="Filter by category">
+                    <button class="cat-btn active" type="button" data-category="all" aria-pressed="true">All services</button>
+                    <button class="cat-btn" type="button" data-category="development" aria-pressed="false">Development</button>
+                    <button class="cat-btn" type="button" data-category="design" aria-pressed="false">Design</button>
+                    <button class="cat-btn" type="button" data-category="writing" aria-pressed="false">Writing</button>
+                    <button class="cat-btn" type="button" data-category="tutoring" aria-pressed="false">Tutoring</button>
+                    <button class="cat-btn" type="button" data-category="marketing" aria-pressed="false">Marketing</button>
                 </div>
-                <div class="card-body">
-                    <div class="owner-info">
-                        <div class="owner-avatar"></div>
-                        <span class="owner-name">Musa O.</span>
-                    </div>
-                    <a href="#" class="service-title">Go (Golang) Microservice & CLI Setup</a>
-                    <div class="rating">
-                        <span>★</span>
-                        <span>4.8</span>
-                        <span class="rating-count">(6)</span>
-                    </div>
-                    <div class="card-footer">
-                        <span class="badge">Programming</span>
-                        <span class="price-tag">&#8358;20,000</span>
-                    </div>
-                </div>
+                <label class="price-filter">
+                    <span class="sr-only">Filter by maximum price</span>
+                    <select id="price-filter" name="max_price">
+                        <option value="all">Any budget</option>
+                        <option value="10000">Under ₦10,000</option>
+                        <option value="20000">Under ₦20,000</option>
+                        <option value="50000">Under ₦50,000</option>
+                    </select>
+                    <span aria-hidden="true">⌄</span>
+                </label>
             </div>
-        </div>
+
+            <p class="results-count" id="results-count" aria-live="polite"></p>
+
+            <div class="services-grid" id="services-grid">
+                <article class="service-card" data-category="development" data-price="15000"
+                    data-search="django rest api development python backend programming">
+                    <a href="#service-django" class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&amp;fit=crop&amp;w=700&amp;q=80"
+                            alt="Code on a computer screen" loading="lazy">
+                        <span class="image-category">DEVELOPMENT</span>
+                    </a>
+                    <div class="card-body">
+                        <div class="owner-info"><span class="owner-avatar avatar-green">AA</span><span class="owner-name">Ashom A.</span><span class="seller-label">· Top seller</span></div>
+                        <a href="#service-django" class="service-title">Django &amp; REST API development</a>
+                        <div class="rating"><span aria-hidden="true">★</span><strong>4.9</strong><span class="rating-count">(18)</span></div>
+                        <div class="card-footer"><span class="starting-at">Starting at</span><span class="price-tag">₦15,000</span></div>
+                    </div>
+                    <button class="favorite-btn" type="button" aria-label="Save Django and REST API development"
+                        aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg></button>
+                </article>
+
+                <article class="service-card" data-category="design" data-price="10000"
+                    data-search="ui ux mobile app wireframing design product">
+                    <a href="#service-product-design" class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&amp;fit=crop&amp;w=700&amp;q=80"
+                            alt="A designer's workspace with interface sketches" loading="lazy">
+                        <span class="image-category">DESIGN</span>
+                    </a>
+                    <div class="card-body">
+                        <div class="owner-info"><span class="owner-avatar avatar-lilac">SA</span><span class="owner-name">Sunday A.</span></div>
+                        <a href="#service-product-design" class="service-title">UI/UX &amp; mobile app wireframes</a>
+                        <div class="rating"><span aria-hidden="true">★</span><strong>4.7</strong><span class="rating-count">(9)</span></div>
+                        <div class="card-footer"><span class="starting-at">Starting at</span><span class="price-tag">₦10,000</span></div>
+                    </div>
+                    <button class="favorite-btn active" type="button" aria-label="Remove UI/UX and mobile app wireframes from saved services"
+                        aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg></button>
+                </article>
+
+                <article class="service-card" data-category="writing" data-price="5000"
+                    data-search="academic science lab report editing proofreading writing">
+                    <a href="#service-proofreading" class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&amp;fit=crop&amp;w=700&amp;q=80"
+                            alt="Notebook and pen on a writer's desk" loading="lazy">
+                        <span class="image-category">WRITING</span>
+                    </a>
+                    <div class="card-body">
+                        <div class="owner-info"><span class="owner-avatar avatar-peach">CV</span><span class="owner-name">Choji V.</span></div>
+                        <a href="#service-proofreading" class="service-title">Proofreading &amp; report review</a>
+                        <div class="rating"><span aria-hidden="true">★</span><strong>5.0</strong><span class="rating-count">(12)</span></div>
+                        <div class="card-footer"><span class="starting-at">Starting at</span><span class="price-tag">₦5,000</span></div>
+                    </div>
+                    <button class="favorite-btn" type="button" aria-label="Save proofreading and report review"
+                        aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg></button>
+                </article>
+
+                <article class="service-card" data-category="development" data-price="20000"
+                    data-search="golang go microservice cli setup software development programming">
+                    <a href="#service-golang" class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&amp;fit=crop&amp;w=700&amp;q=80"
+                            alt="Code editor on a laptop" loading="lazy">
+                        <span class="image-category">DEVELOPMENT</span>
+                    </a>
+                    <div class="card-body">
+                        <div class="owner-info"><span class="owner-avatar avatar-blue">MO</span><span class="owner-name">Musa O.</span></div>
+                        <a href="#service-golang" class="service-title">Go microservice &amp; CLI setup</a>
+                        <div class="rating"><span aria-hidden="true">★</span><strong>4.8</strong><span class="rating-count">(6)</span></div>
+                        <div class="card-footer"><span class="starting-at">Starting at</span><span class="price-tag">₦20,000</span></div>
+                    </div>
+                    <button class="favorite-btn" type="button" aria-label="Save Go microservice and CLI setup"
+                        aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg></button>
+                </article>
+
+                <article class="service-card" data-category="tutoring" data-price="8000"
+                    data-search="maths statistics tutoring lessons student">
+                    <a href="#service-tutoring" class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&amp;fit=crop&amp;w=700&amp;q=80"
+                            alt="Mathematical notes and equations on a page" loading="lazy">
+                        <span class="image-category">TUTORING</span>
+                    </a>
+                    <div class="card-body">
+                        <div class="owner-info"><span class="owner-avatar avatar-yellow">OI</span><span class="owner-name">Ola I.</span></div>
+                        <a href="#service-tutoring" class="service-title">One-on-one maths &amp; statistics</a>
+                        <div class="rating"><span aria-hidden="true">★</span><strong>4.9</strong><span class="rating-count">(14)</span></div>
+                        <div class="card-footer"><span class="starting-at">Starting at</span><span class="price-tag">₦8,000</span></div>
+                    </div>
+                    <button class="favorite-btn" type="button" aria-label="Save maths and statistics tutoring"
+                        aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg></button>
+                </article>
+
+                <article class="service-card" data-category="marketing" data-price="12000"
+                    data-search="social media content strategy marketing instagram">
+                    <a href="#service-social" class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&amp;fit=crop&amp;w=700&amp;q=80"
+                            alt="Colorful social media app icons" loading="lazy">
+                        <span class="image-category">MARKETING</span>
+                    </a>
+                    <div class="card-body">
+                        <div class="owner-info"><span class="owner-avatar avatar-rose">TN</span><span class="owner-name">Tomi N.</span></div>
+                        <a href="#service-social" class="service-title">Social content that feels like you</a>
+                        <div class="rating"><span aria-hidden="true">★</span><strong>4.8</strong><span class="rating-count">(8)</span></div>
+                        <div class="card-footer"><span class="starting-at">Starting at</span><span class="price-tag">₦12,000</span></div>
+                    </div>
+                    <button class="favorite-btn" type="button" aria-label="Save social media content"
+                        aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg></button>
+                </article>
+            </div>
+
+            <div class="empty-state" id="empty-state" hidden>
+                <span aria-hidden="true">⌕</span>
+                <h3>No services found just yet</h3>
+                <p>Try a different search or clear your filters to see what's available.</p>
+                <button class="btn btn-outline" id="clear-filters" type="button">Clear filters</button>
+            </div>
+
+            <div class="browse-more"><a class="btn btn-outline" href="#services">Browse all services <span aria-hidden="true">→</span></a></div>
+        </section>
+
+        <section class="join-banner container" id="join">
+            <div class="join-mark" aria-hidden="true">✳</div>
+            <div>
+                <span class="section-kicker">YOUR SKILLS HAVE A HOME HERE</span>
+                <h2>Make something good happen.</h2>
+                <p>Find your next collaborator, or share what you do with a community that gets it.</p>
+            </div>
+            <a class="btn btn-dark" href="#services">Get started <span aria-hidden="true">↗</span></a>
+        </section>
     </main>
 
-    <footer>
-        <div>
-            <div>
-                <h3>SkillHub</h3>
-                <p>Campus &amp; freelance marketplace<br>to learn, earn, and build.</p>
+    <footer class="site-footer">
+        <div class="footer-main container">
+            <div class="footer-brand">
+                <a href="#" class="logo"><span class="logo-mark" aria-hidden="true"><img src="./img/skillhub-logo.svg" alt=""></span>skill<span>hub</span></a>
+                <p>A little community for big ideas.<br>Learn, earn, and build together.</p>
             </div>
-            <div>
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">How it works</a></li>
-                    <li><a href="#">Safety</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Cookie Policy</a></li>
-                </ul>
-            </div>
+            <div class="footer-column"><h3>Discover</h3><a href="#services">Explore services</a><a href="#how-it-works">How it works</a><a href="#services">Become a seller</a></div>
+            <div class="footer-column"><h3>Community</h3><a href="#join">About SkillHub</a><a href="#join">Help &amp; support</a><a href="#join">Contact us</a></div>
+            <div class="footer-column"><h3>Say hello</h3><a href="mailto:hello@skillhub.example">hello@skillhub.example</a><span>Made for people who make things.</span></div>
         </div>
-        <div>
-            <p>&copy; 2024 SkillHub • All rights reserved • Privacy • Terms</p>
-        </div>
+        <div class="footer-bottom container"><span>© 2026 SkillHub. Built for the doers.</span><span>Made with care, for the community <span class="footer-heart" aria-hidden="true">♥</span></span></div>
     </footer>
+
     <script src="./js/index.js"></script>
 </body>
 
