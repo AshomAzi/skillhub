@@ -1,5 +1,6 @@
 :root {
     color-scheme: light;
+    --header-bg: rgba(235, 241, 228, 0.96);
     --page: #f7f8f3;
     --surface: #fff;
     --ink: #19372b;
@@ -81,7 +82,7 @@ select:focus-visible {
     z-index: 20;
     top: 0;
     border-bottom: 1px solid rgba(231, 235, 227, 0.85);
-    background: rgba(247, 248, 243, 0.94);
+    background: var(--header-bg);
     backdrop-filter: blur(16px);
 }
 
@@ -925,6 +926,7 @@ select:focus-visible {
     text-decoration: none;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
 }
 
 .service-title:hover {
@@ -1652,6 +1654,7 @@ select:focus-visible {
 
 :root[data-theme="dark"] {
     color-scheme: dark;
+    --header-bg: rgba(16, 24, 19, 0.94);
     --page: #101813;
     --surface: #19231c;
     --ink: #edf4ec;
@@ -1673,7 +1676,7 @@ select:focus-visible {
 
 :root[data-theme="dark"] .site-header {
     border-color: rgba(57, 72, 60, 0.8);
-    background: rgba(16, 24, 19, 0.94);
+    background: var(--header-bg);
 }
 
 :root[data-theme="dark"] .theme-icon-moon {

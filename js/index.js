@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             themeToggle.title = `Switch to ${nextMode} theme`;
 
             if (themeColorMeta) {
-                themeColorMeta.setAttribute('content', isDark ? '#101813' : '#f7f8f3');
+                themeColorMeta.setAttribute('content', isDark ? '#101813' : '#ebf1e4');
             }
         };
 

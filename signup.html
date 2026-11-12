@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ebf1e4">
+    <meta name="description" content="Create your SkillHub account and find your people.">
+    <title>Join SkillHub — Find your people</title>
+    <link rel="icon" type="image/svg+xml" href="./img/skillhub-favicon.svg">
+    <script>
+        if (localStorage.getItem('skillhub-theme') === 'dark') {
+            document.documentElement.dataset.theme = 'dark';
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/signup.css">
+</head>
+
+<body class="signup-page">
+    <header class="auth-topbar container">
+        <a href="./index.html" class="logo" aria-label="SkillHub home">
+            <span class="logo-mark" aria-hidden="true"><img src="./img/skillhub-logo.svg" alt=""></span>
+            skill<span>hub</span>
+        </a>
+        <div class="auth-topbar-actions">
+            <span>Already a member?</span>
+            <a class="auth-login-link" href="#login">Log in</a>
+            <button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false"
+                title="Switch to dark theme">
+                <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20.1 15.1A8.5 8.5 0 0 1 8.9 3.9 8.5 8.5 0 1 0 20.1 15.1Z"></path>
+                </svg>
+                <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="auth-main">
+        <div class="signup-layout container">
+            <aside class="signup-story">
+                <div class="story-orb" aria-hidden="true"></div>
+                <span class="story-kicker"><span></span> YOUR NEXT CHAPTER STARTS HERE</span>
+                <h1>Good work begins with the <span>right people.</span></h1>
+                <p>Meet the students, makers, and independent creators who can help bring your next idea to life.</p>
+
+                <div class="story-points">
+                    <div><span class="story-check" aria-hidden="true">✓</span><span>Find a skill for every big idea</span></div>
+                    <div><span class="story-check" aria-hidden="true">✓</span><span>Work directly with talented people</span></div>
+                    <div><span class="story-check" aria-hidden="true">✓</span><span>Build your name in the community</span></div>
+                </div>
+
+                <div class="story-quote">
+                    <div class="quote-avatars" aria-hidden="true"><span>AA</span><span>SA</span><span>CV</span></div>
+                    <p><strong>A community that gets things done.</strong><span>Find your next collaborator on SkillHub.</span></p>
+                    <span class="quote-sparkle" aria-hidden="true">✳</span>
+                </div>
+                <span class="story-decoration" aria-hidden="true">✦</span>
+            </aside>
+
+            <section class="signup-form-panel" aria-labelledby="signup-title">
+                <div class="signup-heading">
+                    <span class="signup-kicker">JOIN THE COMMUNITY</span>
+                    <h2 id="signup-title">Create your account</h2>
+                    <p>It only takes a minute to get started.</p>
+                </div>
+
+                <form class="signup-form" id="signup-form" action="#" method="post">
+                    <div class="form-field">
+                        <label for="username">Username</label>
+                        <input id="username" name="username" type="text" autocomplete="username" minlength="3"
+                            maxlength="30" placeholder="Choose a username" required>
+                        <span class="field-hint">3–30 characters. You can change this later.</span>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="email">Email address</label>
+                        <input id="email" name="email" type="email" autocomplete="email"
+                            placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="password">Password</label>
+                        <div class="password-input-wrap">
+                            <input id="password" name="password" type="password" autocomplete="new-password"
+                                minlength="8" placeholder="At least 8 characters" required>
+                            <button class="password-toggle" type="button" data-password-toggle="password"
+                                aria-label="Show password" aria-pressed="false">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="password-strength" aria-live="polite">
+                            <div class="strength-meter" id="strength-meter" data-strength="0" aria-hidden="true">
+                                <span></span><span></span><span></span><span></span>
+                            </div>
+                            <span id="strength-label">Use at least 8 characters.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="confirm-password">Confirm password</label>
+                        <div class="password-input-wrap">
+                            <input id="confirm-password" name="confirm_password" type="password"
+                                autocomplete="new-password" placeholder="Enter your password again" required>
+                            <button class="password-toggle" type="button" data-password-toggle="confirm-password"
+                                aria-label="Show confirm password" aria-pressed="false">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <label class="terms-row" for="terms">
+                        <input id="terms" name="terms" type="checkbox" required>
+                        <span>I agree to the <a href="#terms">Terms of Service</a> and <a href="#privacy">Privacy Policy</a>.</span>
+                    </label>
+
+                    <button class="btn btn-primary signup-submit" type="submit">Create account <span aria-hidden="true">→</span></button>
+                    <p class="signup-status" id="signup-status" role="status" aria-live="polite" hidden></p>
+                </form>
+
+                <p class="signup-footnote">Your details stay yours. We’ll never share them without your permission.</p>
+                <a class="back-to-marketplace" href="./index.html"><span aria-hidden="true">←</span> Back to the marketplace</a>
+            </section>
+        </div>
+    </main>
+
+    <script src="./js/index.js"></script>
+    <script src="./js/signup.js"></script>
+</body>
+
+</html>
