@@ -137,6 +137,7 @@ select:focus-visible {
 }
 
 .nav-links {
+    order: 2;
     gap: 37px;
 }
 
@@ -156,6 +157,44 @@ select:focus-visible {
 
 .nav-actions {
     gap: 24px;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    width: 40px;
+    min-height: 38px;
+    flex: 0 0 40px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.theme-toggle:hover {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+.theme-icon {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.7;
+}
+
+.theme-icon-sun {
+    display: none;
 }
 
 .btn {
@@ -219,6 +258,7 @@ select:focus-visible {
 
 .hamburger-btn {
     display: none;
+    order: 4;
     width: 42px;
     height: 42px;
     flex-direction: column;
@@ -1195,8 +1235,16 @@ select:focus-visible {
 
     .nav-actions {
         justify-content: space-between;
+        gap: 10px;
         padding-top: 12px;
         border-top: 1px solid var(--line);
+    }
+
+    .theme-toggle {
+        width: 40px;
+        min-height: 40px;
+        flex-basis: 40px;
+        padding: 0;
     }
 
     .hero {
@@ -1446,6 +1494,15 @@ select:focus-visible {
         padding-inline: 7px;
     }
 
+    .nav-actions {
+        gap: 6px;
+    }
+
+    .theme-toggle {
+        width: 38px;
+        flex-basis: 38px;
+    }
+
     .marketplace-controls {
         flex-direction: column;
         align-items: stretch;
@@ -1592,3 +1649,132 @@ select:focus-visible {
         font-size: 10px;
     }
 }
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #101813;
+    --surface: #19231c;
+    --ink: #edf4ec;
+    --ink-soft: #d3ded2;
+    --muted: #a4b1a6;
+    --line: #2d3a30;
+    --green: #9dc98a;
+    --green-dark: #b6dba3;
+    --lime: #c4e77e;
+    --lime-soft: #293a2b;
+    --gold: #f0c66c;
+    --shadow-card: 0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
+:root[data-theme="dark"] body {
+    color: var(--ink);
+    background: var(--page);
+}
+
+:root[data-theme="dark"] .site-header {
+    border-color: rgba(57, 72, 60, 0.8);
+    background: rgba(16, 24, 19, 0.94);
+}
+
+:root[data-theme="dark"] .theme-icon-moon {
+    display: none;
+}
+
+:root[data-theme="dark"] .theme-icon-sun {
+    display: block;
+}
+
+:root[data-theme="dark"] .btn-primary,
+:root[data-theme="dark"] .navbar .btn-primary {
+    background: var(--green);
+    color: #17241a !important;
+}
+
+:root[data-theme="dark"] .btn-primary:hover {
+    background: var(--green-dark);
+    color: #17241a !important;
+}
+
+:root[data-theme="dark"] .btn-dark {
+    background: var(--lime);
+    color: #17241a;
+}
+
+:root[data-theme="dark"] .btn-dark:hover {
+    background: #d2f19b;
+}
+
+:root[data-theme="dark"] .btn-outline,
+:root[data-theme="dark"] .search-bar,
+:root[data-theme="dark"] .floating-note,
+:root[data-theme="dark"] .price-filter,
+:root[data-theme="dark"] .service-card,
+:root[data-theme="dark"] .empty-state {
+    border-color: var(--line);
+    background-color: var(--surface);
+}
+
+:root[data-theme="dark"] .popular-searches button {
+    border-color: var(--line);
+    color: var(--muted);
+}
+
+:root[data-theme="dark"] .popular-searches button:hover {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+:root[data-theme="dark"] .search-bar input::placeholder {
+    color: #aab6ab;
+}
+
+:root[data-theme="dark"] .floating-note small,
+:root[data-theme="dark"] .hero-bottom,
+:root[data-theme="dark"] .cat-btn,
+:root[data-theme="dark"] .price-filter > span,
+:root[data-theme="dark"] .results-count,
+:root[data-theme="dark"] .owner-name,
+:root[data-theme="dark"] .seller-label,
+:root[data-theme="dark"] .rating-count,
+:root[data-theme="dark"] .starting-at,
+:root[data-theme="dark"] .section-heading p,
+:root[data-theme="dark"] .empty-state p,
+:root[data-theme="dark"] .join-banner p,
+:root[data-theme="dark"] .footer-brand p,
+:root[data-theme="dark"] .footer-column a,
+:root[data-theme="dark"] .footer-column > span,
+:root[data-theme="dark"] .footer-bottom {
+    color: var(--muted);
+}
+
+:root[data-theme="dark"] .hero-bottom,
+:root[data-theme="dark"] .card-footer,
+:root[data-theme="dark"] .footer-bottom {
+    border-color: var(--line);
+}
+
+:root[data-theme="dark"] .join-banner {
+    border-color: var(--line);
+    background: #1b291f;
+}
+
+:root[data-theme="dark"] .site-footer {
+    border-color: var(--line);
+    background: #141e17;
+}
+
+:root[data-theme="dark"] .join-banner .section-kicker {
+    color: var(--green);
+}
+
+:root[data-theme="dark"] .service-card:hover {
+    border-color: #506d53;
+    box-shadow: 0 17px 36px rgba(0, 0, 0, 0.3);
+}
+
+:root[data-theme="dark"] .avatar-green { background: #344a35; color: #d5ebc7; }
+:root[data-theme="dark"] .avatar-lilac { background: #423a50; color: #e0d1f6; }
+:root[data-theme="dark"] .avatar-peach { background: #503c31; color: #f3d0b8; }
+:root[data-theme="dark"] .avatar-blue { background: #30434a; color: #cce4ee; }
+:root[data-theme="dark"] .avatar-yellow { background: #4a4733; color: #eee5ad; }
+:root[data-theme="dark"] .avatar-rose { background: #4a353c; color: #f0cbd3; }

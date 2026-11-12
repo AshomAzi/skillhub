@@ -1,4 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+
+    if (themeToggle) {
+        const updateTheme = (theme) => {
+            const isDark = theme === 'dark';
+            const nextMode = isDark ? 'light' : 'dark';
+
+            document.documentElement.dataset.theme = theme;
+            themeToggle.setAttribute('aria-pressed', String(isDark));
+            themeToggle.setAttribute('aria-label', `Switch to ${nextMode} theme`);
+            themeToggle.title = `Switch to ${nextMode} theme`;
+
+            if (themeColorMeta) {
+                themeColorMeta.setAttribute('content', isDark ? '#101813' : '#f7f8f3');
+            }
+        };
+
+        updateTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+
+        themeToggle.addEventListener('click', () => {
+            const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+            updateTheme(nextTheme);
+            localStorage.setItem('skillhub-theme', nextTheme);
+        });
+    }
+
     const hamburger = document.querySelector('.hamburger-btn');
     const navLinks = document.querySelector('.nav-links');
     const navContainer = document.querySelector('.navbar');
