@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         status.textContent = 'Signed in successfully.';
         status.hidden = false;
         window.setTimeout(() => {
-            window.location.href = './index.html';
+            window.location.href = './dashboard.html';
         }, 500);
     });
 });

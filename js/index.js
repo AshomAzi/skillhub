@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
         memberHeader.hidden = !isAuthenticated;
     }
 
+    document.querySelectorAll('.navbar:not(.member-navbar) .nav-actions').forEach((guestActions) => {
+        guestActions.hidden = isAuthenticated;
+    });
+
     if (profileTrigger && profileMenu && profileMenuList) {
         const closeProfileMenu = () => {
             profileMenuList.hidden = true;

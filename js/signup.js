@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         status.textContent = 'Your account is ready.';
         status.hidden = false;
         window.setTimeout(() => {
-            window.location.href = './index.html';
+            window.location.href = './dashboard.html';
         }, 500);
     });
 

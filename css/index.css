@@ -94,6 +94,7 @@ select:focus-visible {
 }
 
 .member-navbar {
+    height: 58px;
     border-top: 1px solid var(--line);
     background: var(--surface);
 }

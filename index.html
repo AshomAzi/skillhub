@@ -30,14 +30,17 @@
                 skill<span>hub</span>
             </a>
 
-            <button class="hamburger-btn" type="button" aria-label="Open navigation menu" aria-expanded="false"
-                aria-controls="primary-navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-            <div class="nav-links" id="primary-navigation">
+                        <div class="mobile-header-actions">
+                <button class="theme-toggle mobile-theme-toggle" type="button" aria-label="Switch to dark theme"
+                    aria-pressed="false" title="Switch to dark theme">
+                    <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.1 15.1A8.5 8.5 0 0 1 8.9 3.9 8.5 8.5 0 1 0 20.1 15.1Z"></path></svg>
+                    <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>
+                </button>
+                <button class="hamburger-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+<div class="nav-links" id="primary-navigation">
                 <a class="nav-browse" href="#services">Explore services</a>
                 <a class="nav-sell" href="#how-it-works">How it works</a>
                 <div class="nav-actions">
@@ -59,22 +62,28 @@
                 </div>
             </div>
         </nav>
-        <!-- <nav class="navbar container" aria-label="Main navigation">
+        <nav class="navbar member-navbar container" id="member-header" aria-label="Member navigation">
             <a href="#" class="logo" aria-label="SkillHub home">
                 <span class="logo-mark" aria-hidden="true"><img src="./img/skillhub-logo.svg" alt=""></span>
                 skill<span>hub</span>
             </a>
 
-            <button class="hamburger-btn" type="button" aria-label="Open navigation menu" aria-expanded="false"
-                aria-controls="primary-navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+                        <div class="mobile-header-actions">
+                <button class="theme-toggle mobile-theme-toggle" type="button" aria-label="Switch to dark theme"
+                    aria-pressed="false" title="Switch to dark theme">
+                    <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.1 15.1A8.5 8.5 0 0 1 8.9 3.9 8.5 8.5 0 1 0 20.1 15.1Z"></path></svg>
+                    <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>
+                </button>
+                <button class="hamburger-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="member-navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
 
-            <div class="nav-links" id="primary-navigation">
+
+            <div class="nav-links" id="member-navigation">
                 <a class="nav-browse" href="#services">Explore services</a>
                 <a class="nav-sell" href="#how-it-works">How it works</a>
+                <a class="nav-sell" href="./dashboard.html#services">Create or edit a service</a>
                 <div class="member-actions">
                     <button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false"
                         title="Switch to dark theme">
@@ -88,7 +97,7 @@
                             </path>
                         </svg>
                     </button>
-                    <a class="member-dashboard-link" href="#dashboard">
+                    <a class="member-dashboard-link" href="./dashboard.html">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <rect x="3" y="3" width="7" height="7" rx="1"></rect>
                             <rect x="14" y="3" width="7" height="7" rx="1"></rect>
@@ -111,7 +120,7 @@
                                 <strong>Alex Morgan</strong>
                                 <span>alex@example.com</span>
                             </div>
-                            <a href="#dashboard" role="menuitem">
+                            <a href="./dashboard.html" role="menuitem">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <rect x="3" y="3" width="7" height="7" rx="1"></rect>
                                     <rect x="14" y="3" width="7" height="7" rx="1"></rect>
@@ -120,7 +129,7 @@
                                 </svg>
                                 My dashboard
                             </a>
-                            <a href="#manage-services" role="menuitem">
+                            <a href="./dashboard.html#services" role="menuitem">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M12 20h9"></path>
                                     <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"></path>
@@ -139,7 +148,7 @@
                     </div>
                 </div>
             </div>
-        </nav> -->
+        </nav>
     </header>
 
     <main>

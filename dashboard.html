@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ebf1e4">
+    <meta name="description" content="Manage your SkillHub profile and services.">
+    <title>Dashboard - SkillHub</title>
+    <link rel="icon" type="image/svg+xml" href="./img/skillhub-favicon.svg">
+    <script>
+        if (localStorage.getItem('skillhub-theme') === 'dark') {
+            document.documentElement.dataset.theme = 'dark';
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
+</head>
+
+<body class="dashboard-page" data-authenticated="true">
+    <header class="dashboard-topbar">
+        <div class="dashboard-topbar-inner container">
+            <a href="./index.html" class="logo" aria-label="SkillHub home">
+                <span class="logo-mark" aria-hidden="true"><img src="./img/skillhub-logo.svg" alt=""></span>
+                skill<span>hub</span>
+            </a>
+            <div class="dashboard-topbar-actions">
+                <a class="dashboard-marketplace-link" href="./index.html">Marketplace</a>
+                <button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false" title="Switch to dark theme">
+                    <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.1 15.1A8.5 8.5 0 0 1 8.9 3.9 8.5 8.5 0 1 0 20.1 15.1Z"></path></svg>
+                    <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>
+                </button>
+                <div class="profile-menu">
+                    <button class="profile-menu-trigger" type="button" aria-expanded="false" aria-controls="dashboard-profile-menu" aria-label="Open profile menu">
+                        <img class="dashboard-avatar" src="./img/profile-avatar.svg" alt="">
+                        <svg class="profile-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 9.5 5 5 5-5"></path></svg>
+                    </button>
+                    <div class="profile-menu-list" id="dashboard-profile-menu" role="menu" hidden>
+                        <div class="profile-menu-heading">
+                            <strong class="profile-menu-name">Alex Morgan</strong>
+                            <span class="profile-menu-email">alex@example.com</span>
+                        </div>
+                        <a href="./dashboard.html" role="menuitem">My dashboard</a>
+                        <a href="#profile" role="menuitem" data-open-profile>Edit profile</a>
+                        <button class="profile-menu-logout" type="button" role="menuitem">Log out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-main container">
+        <aside class="dashboard-sidebar" aria-label="Dashboard navigation">
+            <nav>
+                <button class="dashboard-nav-item active" type="button" data-dashboard-section="overview">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+                    Overview
+                </button>
+                <button class="dashboard-nav-item" type="button" data-dashboard-section="services">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7H4a2 2 0 0 0-2 2v9h20V9a2 2 0 0 0-2-2Z"></path><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    My services
+                </button>
+                <button class="dashboard-nav-item" type="button" data-dashboard-section="profile">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>
+                    Edit profile
+                </button>
+            </nav>
+            <a class="dashboard-sidebar-marketplace" href="./index.html"><span aria-hidden="true">←</span> Back to marketplace</a>
+        </aside>
+
+        <div class="dashboard-content">
+            <section class="dashboard-section active" id="overview" data-dashboard-panel="overview">
+                <div class="dashboard-heading">
+                    <div>
+                        <span class="dashboard-kicker">YOUR WORKSPACE</span>
+                        <h1>Good to see you, <span id="overview-name">Alex</span>.</h1>
+                        <p>Manage your services and keep your profile up to date.</p>
+                    </div>
+                    <button class="btn btn-primary" type="button" data-open-service>Create a service</button>
+                </div>
+                <div class="dashboard-stats">
+                    <article><span>Active services</span><strong id="active-service-count">0</strong></article>
+                    <article><span>Profile completion</span><strong id="profile-completion">0%</strong></article>
+                    <article><span>Member since</span><strong>2026</strong></article>
+                </div>
+                <div class="dashboard-preview-heading">
+                    <div><h2>Recent services</h2><p>Your latest listings.</p></div>
+                    <button class="text-action" type="button" data-dashboard-section="services">View all <span aria-hidden="true">→</span></button>
+                </div>
+                <div class="dashboard-service-grid" id="overview-service-grid"></div>
+            </section>
+
+            <section class="dashboard-section" id="services" data-dashboard-panel="services">
+                <div class="dashboard-heading">
+                    <div>
+                        <span class="dashboard-kicker">YOUR SERVICES</span>
+                        <h1>Manage services</h1>
+                        <p>Create, update, or remove the services you offer.</p>
+                    </div>
+                    <button class="btn btn-primary" type="button" data-open-service>Create a service</button>
+                </div>
+                <div class="dashboard-service-grid" id="service-grid"></div>
+                <div class="dashboard-empty" id="service-empty" hidden>
+                    <span aria-hidden="true">+</span><h2>Your first service starts here</h2>
+                    <p>Add the skills you offer and set your own rate.</p>
+                    <button class="btn btn-primary" type="button" data-open-service>Create a service</button>
+                </div>
+            </section>
+
+            <section class="dashboard-section" id="profile" data-dashboard-panel="profile">
+                <div class="dashboard-heading">
+                    <div>
+                        <span class="dashboard-kicker">YOUR PROFILE</span>
+                        <h1>Profile settings</h1>
+                        <p>Make it easier for people to know who they will work with.</p>
+                    </div>
+                </div>
+                <form class="profile-form" id="profile-form">
+                    <div class="profile-photo-row">
+                        <img id="profile-preview" src="./img/profile-avatar.svg" alt="Profile preview">
+                        <div>
+                            <label class="profile-photo-button" for="profile-image">Change photo</label>
+                            <input id="profile-image" type="file" accept="image/*" hidden>
+                            <p>JPG or PNG, up to 5 MB.</p>
+                        </div>
+                    </div>
+                    <div class="profile-form-grid">
+                        <div class="form-field"><label for="profile-name">Full name</label><input id="profile-name" name="name" type="text" autocomplete="name" required></div>
+                        <div class="form-field"><label for="profile-username">Username</label><input id="profile-username" name="username" type="text" autocomplete="username" required></div>
+                        <div class="form-field"><label for="profile-email">Email address</label><input id="profile-email" name="email" type="email" autocomplete="email" required></div>
+                        <div class="form-field"><label for="profile-phone">Phone number</label><input id="profile-phone" name="phone" type="tel" autocomplete="tel"></div>
+                        <div class="form-field"><label for="profile-location">Location</label><input id="profile-location" name="location" type="text" autocomplete="address-level2"></div>
+                        <div class="form-field"><label for="profile-role">Primary skill</label><input id="profile-role" name="role" type="text" placeholder="e.g. UI/UX designer"></div>
+                    </div>
+                    <div class="form-field">
+                        <label for="profile-bio">About you</label>
+                        <textarea id="profile-bio" name="bio" maxlength="300" rows="5" placeholder="Share your experience, interests, and the kind of work you enjoy."></textarea>
+                    </div>
+                    <div class="profile-form-actions">
+                        <p id="profile-status" role="status" aria-live="polite" hidden></p>
+                        <button class="btn btn-primary" type="submit">Save profile</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <dialog class="dashboard-dialog" id="service-dialog">
+        <form id="service-form">
+            <div class="dialog-heading">
+                <div><span class="dashboard-kicker" id="service-dialog-kicker">NEW LISTING</span><h2 id="service-dialog-title">Create a service</h2></div>
+                <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
+            </div>
+            <input id="service-id" type="hidden">
+            <div class="form-field"><label for="service-title">Service title</label><input id="service-title" name="title" type="text" maxlength="70" placeholder="e.g. Professional logo design" required></div>
+            <div class="form-field"><label for="service-description">Description</label><textarea id="service-description" name="description" maxlength="500" rows="5" placeholder="Describe what you will deliver..." required></textarea></div>
+            <div class="service-rate-grid">
+                <div class="form-field"><label for="service-amount">Amount</label><input id="service-amount" name="amount" type="number" min="1" step="0.01" placeholder="10000" required></div>
+                <div class="form-field"><label for="service-billing">Charge</label><select id="service-billing" name="billing" required><option value="per service">Per service</option><option value="per hour">Per hour</option><option value="per project">Per project</option></select></div>
+            </div>
+            <div class="dialog-actions">
+                <button class="btn btn-outline" type="button" data-close-dialog>Cancel</button>
+                <button class="btn btn-primary" type="submit" id="service-submit">Publish service</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script src="./js/index.js"></script>
+    <script src="./js/dashboard.js"></script>
+</body>
+
+</html>
