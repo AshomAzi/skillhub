@@ -1,16 +1,73 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.querySelector('.theme-toggle');
+    const memberHeader = document.querySelector('#member-header');
+    const profileMenu = document.querySelector('.profile-menu');
+    const profileTrigger = document.querySelector('.profile-menu-trigger');
+    const profileMenuList = document.querySelector('#profile-menu-list');
+
+    const storedAuth = localStorage.getItem('skillhub-signed-in');
+    const isAuthenticated = storedAuth !== null
+        ? storedAuth === 'true'
+        : document.body.dataset.authenticated === 'true';
+
+    if (memberHeader) {
+        memberHeader.hidden = !isAuthenticated;
+    }
+
+    if (profileTrigger && profileMenu && profileMenuList) {
+        const closeProfileMenu = () => {
+            profileMenuList.hidden = true;
+            profileTrigger.setAttribute('aria-expanded', 'false');
+        };
+
+        profileTrigger.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const isOpen = profileMenuList.hidden;
+            profileMenuList.hidden = !isOpen;
+            profileTrigger.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        profileMenuList.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', closeProfileMenu);
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!profileMenu.contains(event.target)) {
+                closeProfileMenu();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeProfileMenu();
+                profileTrigger.focus();
+            }
+        });
+
+        const logoutButton = profileMenuList.querySelector('.profile-menu-logout');
+        if (logoutButton) {
+            logoutButton.addEventListener('click', () => {
+                localStorage.setItem('skillhub-signed-in', 'false');
+                document.body.dataset.authenticated = 'false';
+                if (memberHeader) memberHeader.hidden = true;
+                closeProfileMenu();
+            });
+        }
+    }
+
+    const themeToggles = document.querySelectorAll('.theme-toggle');
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
 
-    if (themeToggle) {
+    if (themeToggles.length) {
         const updateTheme = (theme) => {
             const isDark = theme === 'dark';
             const nextMode = isDark ? 'light' : 'dark';
 
             document.documentElement.dataset.theme = theme;
-            themeToggle.setAttribute('aria-pressed', String(isDark));
-            themeToggle.setAttribute('aria-label', `Switch to ${nextMode} theme`);
-            themeToggle.title = `Switch to ${nextMode} theme`;
+            themeToggles.forEach((themeToggle) => {
+                themeToggle.setAttribute('aria-pressed', String(isDark));
+                themeToggle.setAttribute('aria-label', `Switch to ${nextMode} theme`);
+                themeToggle.title = `Switch to ${nextMode} theme`;
+            });
 
             if (themeColorMeta) {
                 themeColorMeta.setAttribute('content', isDark ? '#101813' : '#ebf1e4');
@@ -19,10 +76,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
 
-        themeToggle.addEventListener('click', () => {
-            const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-            updateTheme(nextTheme);
-            localStorage.setItem('skillhub-theme', nextTheme);
+        themeToggles.forEach((themeToggle) => {
+            themeToggle.addEventListener('click', () => {
+                const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+                updateTheme(nextTheme);
+                localStorage.setItem('skillhub-theme', nextTheme);
+            });
         });
     }
 

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ebf1e4">
+    <meta name="description" content="Sign in to your SkillHub account.">
+    <title>Sign in to SkillHub</title>
+    <link rel="icon" type="image/svg+xml" href="./img/skillhub-favicon.svg">
+    <script>
+        if (localStorage.getItem('skillhub-theme') === 'dark') {
+            document.documentElement.dataset.theme = 'dark';
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/signup.css">
+    <link rel="stylesheet" href="./css/signin.css">
+</head>
+
+<body class="signin-page">
+    <header class="auth-topbar container">
+        <a href="./index.html" class="logo" aria-label="SkillHub home">
+            <span class="logo-mark" aria-hidden="true"><img src="./img/skillhub-logo.svg" alt=""></span>
+            skill<span>hub</span>
+        </a>
+        <div class="auth-topbar-actions">
+            <span>New to SkillHub?</span>
+            <a class="auth-login-link" href="./signup.html">Join now</a>
+            <button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false"
+                title="Switch to dark theme">
+                <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20.1 15.1A8.5 8.5 0 0 1 8.9 3.9 8.5 8.5 0 1 0 20.1 15.1Z"></path>
+                </svg>
+                <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path
+                        d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="auth-main">
+        <div class="signin-layout container">
+            <section class="signin-form-panel" aria-labelledby="signin-title">
+                <div class="signup-heading">
+                    <span class="signup-kicker">WELCOME BACK</span>
+                    <h2 id="signin-title">Sign in to SkillHub</h2>
+                    <p>Pick up where you left off.</p>
+                </div>
+
+                <form class="signin-form" id="signin-form" action="#" method="post">
+                    <div class="form-field">
+                        <label for="signin-email">Email address</label>
+                        <input id="signin-email" name="email" type="email" autocomplete="email"
+                            placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="signin-password-label">
+                            <label for="signin-password">Password</label>
+                            <a href="#forgot-password">Forgot password?</a>
+                        </div>
+                        <div class="password-input-wrap">
+                            <input id="signin-password" name="password" type="password" autocomplete="current-password"
+                                placeholder="Enter your password" required>
+                            <button class="password-toggle" type="button" data-password-toggle="signin-password"
+                                aria-label="Show password" aria-pressed="false">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <label class="remember-row" for="remember">
+                        <input id="remember" name="remember" type="checkbox">
+                        <span>Keep me signed in</span>
+                    </label>
+
+                    <button class="btn btn-primary signin-submit" type="submit">Sign in <span
+                            aria-hidden="true">→</span></button>
+                    <p class="signin-status" id="signin-status" role="status" aria-live="polite" hidden></p>
+                </form>
+
+                <div class="signin-divider"><span>OR</span></div>
+
+                <a class="signin-create-link" href="./signup.html">Create a new account <span
+                        aria-hidden="true">→</span></a>
+                <a class="back-to-marketplace" href="./index.html"><span aria-hidden="true">←</span> Back to the
+                    marketplace</a>
+            </section>
+
+            <aside class="signin-story" aria-label="SkillHub community">
+                <div class="signin-story-grid" aria-hidden="true"></div>
+                <span class="signin-story-kicker"><span></span> PEOPLE MAKE THE DIFFERENCE</span>
+                <div class="signin-story-copy">
+                    <h1>Good ideas grow when <span>people connect.</span></h1>
+                    <p>Find the person who can turn your next idea into something real.</p>
+                </div>
+
+                <div class="signin-community-card">
+                    <div class="signin-community-icons" aria-hidden="true">
+                        <span>JS</span><span>MK</span><span>RN</span>
+                    </div>
+                    <div>
+                        <strong>Join a creative community</strong>
+                        <span>Students, makers, and independent experts</span>
+                    </div>
+                </div>
+                <span class="signin-sparkle" aria-hidden="true">✦</span>
+            </aside>
+        </div>
+    </main>
+
+    <script src="./js/index.js"></script>
+    <script src="./js/signin.js"></script>
+</body>
+
+</html>

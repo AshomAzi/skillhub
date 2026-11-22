@@ -48,8 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', (event) => {
         event.preventDefault();
-        status.textContent = 'Your details are valid. Connect this form to Django to create the account.';
+        localStorage.setItem('skillhub-signed-in', 'true');
+        status.textContent = 'Your account is ready.';
         status.hidden = false;
+        window.setTimeout(() => {
+            window.location.href = './index.html';
+        }, 500);
     });
 
     updatePasswordStrength();
