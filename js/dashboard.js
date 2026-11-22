@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let profile = loadProfile();
     let services = loadServices();
+    let draftServiceImages = [];
 
     const profileForm = document.querySelector('#profile-form');
     const profilePreview = document.querySelector('#profile-preview');
@@ -38,9 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const profileStatus = document.querySelector('#profile-status');
     const serviceDialog = document.querySelector('#service-dialog');
     const serviceForm = document.querySelector('#service-form');
+    const serviceImageInput = document.querySelector('#service-images');
+    const serviceImagePreview = document.querySelector('#service-image-preview');
+    const serviceImageStatus = document.querySelector('#service-image-status');
+    const serviceFormStatus = document.querySelector('#service-form-status');
     const serviceGrid = document.querySelector('#service-grid');
     const overviewServiceGrid = document.querySelector('#overview-service-grid');
     const serviceEmpty = document.querySelector('#service-empty');
+    const sidebar = document.querySelector('.dashboard-sidebar');
+    const sidebarToggle = document.querySelector('.dashboard-sidebar-toggle');
+    const sidebarBackdrop = document.querySelector('.dashboard-sidebar-backdrop');
 
     const escapeHtml = (value) => String(value)
         .replace(/&/g, '&amp;')
@@ -63,6 +71,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const saveServices = () => {
         localStorage.setItem(servicesKey, JSON.stringify(services));
+    };
+
+    const renderServiceImagePreviews = () => {
+        serviceImagePreview.innerHTML = draftServiceImages.map((image, index) => `
+            <div class="service-image-preview-item">
+                <img src="${escapeHtml(image)}" alt="Service image ${index + 1}">
+                <button class="service-image-remove" type="button" data-remove-service-image="${index}"
+                    aria-label="Remove image ${index + 1}">×</button>
+            </div>
+        `).join('');
+
+        const count = draftServiceImages.length;
+        const isValid = count >= 3;
+        serviceImageStatus.textContent = isValid
+            ? `${count} images selected.`
+            : `${count} selected. Add at least ${3 - count} more.`;
+        serviceImageStatus.dataset.valid = String(isValid);
+    };
+
+    const readServiceImage = (file) => {
+        if (!file.type.startsWith('image/')) {
+            return Promise.reject(new Error(`${file.name} is not an image.`));
+        }
+        if (file.size > 5 * 1024 * 1024) {
+            return Promise.reject(new Error(`${file.name} is larger than 5 MB.`));
+        }
+
+        return new Promise((resolve, reject) => {
+            const image = new Image();
+            const imageUrl = URL.createObjectURL(file);
+
+            image.addEventListener('load', () => {
+                const maxDimension = 1200;
+                const scale = Math.min(1, maxDimension / Math.max(image.naturalWidth, image.naturalHeight));
+                const canvas = document.createElement('canvas');
+                canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+                canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+                const context = canvas.getContext('2d');
+
+                if (!context) {
+                    URL.revokeObjectURL(imageUrl);
+                    reject(new Error('Could not process the selected image.'));
+                    return;
+                }
+
+                context.drawImage(image, 0, 0, canvas.width, canvas.height);
+                URL.revokeObjectURL(imageUrl);
+                resolve(canvas.toDataURL('image/jpeg', 0.78));
+            }, { once: true });
+
+            image.addEventListener('error', () => {
+                URL.revokeObjectURL(imageUrl);
+                reject(new Error(`Could not read ${file.name}. Choose a different image.`));
+            }, { once: true });
+
+            image.src = imageUrl;
+        });
     };
 
     const updateProfileUI = () => {
@@ -92,16 +157,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const serviceCard = (service) => `
         <article class="dashboard-service-card" data-service-id="${escapeHtml(service.id)}">
-            <h2>${escapeHtml(service.title)}</h2>
-            <p>${escapeHtml(service.description)}</p>
-            <div class="dashboard-service-footer">
-                <span class="dashboard-service-price">
-                    <span>Price</span>
-                    <strong>${formatAmount(service.amount)} ${escapeHtml(service.billing)}</strong>
-                </span>
-                <div class="dashboard-service-actions">
-                    <button class="service-action" type="button" data-edit-service="${escapeHtml(service.id)}">Edit</button>
-                    <button class="service-action delete" type="button" data-delete-service="${escapeHtml(service.id)}">Delete</button>
+            ${Array.isArray(service.images) && service.images.length ? `
+                <div class="dashboard-service-images">
+                    ${service.images.slice(0, 3).map((image, index) =>
+                        `<img src="${escapeHtml(image)}" alt="${escapeHtml(service.title)} image ${index + 1}">`
+                    ).join('')}
+                </div>
+            ` : ''}
+            <div class="dashboard-service-content">
+                <h2>${escapeHtml(service.title)}</h2>
+                <p>${escapeHtml(service.description)}</p>
+                <div class="dashboard-service-footer">
+                    <span class="dashboard-service-price">
+                        <span>Price</span>
+                        <strong>${formatAmount(service.amount)} ${escapeHtml(service.billing)}</strong>
+                    </span>
+                    <div class="dashboard-service-actions">
+                        <button class="service-action" type="button" data-edit-service="${escapeHtml(service.id)}">Edit</button>
+                        <button class="service-action delete" type="button" data-delete-service="${escapeHtml(service.id)}">Delete</button>
+                    </div>
                 </div>
             </div>
         </article>
@@ -134,6 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.classList.toggle('active', button.dataset.dashboardSection === sectionName);
             }
         });
+        setSidebarOpen(false);
 
         if (sectionName === 'services') {
             window.history.replaceState(null, '', '#services');
@@ -143,6 +218,27 @@ document.addEventListener('DOMContentLoaded', () => {
             window.history.replaceState(null, '', '#overview');
         }
     };
+
+    const setSidebarOpen = (isOpen) => {
+        sidebar.classList.toggle('mobile-open', isOpen);
+        document.body.classList.toggle('dashboard-sidebar-open', isOpen);
+        sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+        sidebarToggle.setAttribute('aria-label', isOpen ? 'Close dashboard menu' : 'Open dashboard menu');
+        sidebarBackdrop.hidden = !isOpen;
+    };
+
+    sidebarToggle.addEventListener('click', () => {
+        setSidebarOpen(!sidebar.classList.contains('mobile-open'));
+    });
+
+    sidebarBackdrop.addEventListener('click', () => setSidebarOpen(false));
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && sidebar.classList.contains('mobile-open')) {
+            setSidebarOpen(false);
+            sidebarToggle.focus();
+        }
+    });
 
     document.querySelectorAll('[data-dashboard-section]').forEach((button) => {
         button.addEventListener('click', () => showSection(button.dataset.dashboardSection));
@@ -161,6 +257,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('#service-description').value = service?.description || '';
         document.querySelector('#service-amount').value = service?.amount || '';
         document.querySelector('#service-billing').value = service?.billing || 'per service';
+        serviceImageInput.value = '';
+        draftServiceImages = Array.isArray(service?.images) ? [...service.images] : [];
+        serviceFormStatus.hidden = true;
+        serviceFormStatus.textContent = '';
+        renderServiceImagePreviews();
         document.querySelector('#service-dialog-kicker').textContent = service ? 'EDIT LISTING' : 'NEW LISTING';
         document.querySelector('#service-dialog-title').textContent = service ? 'Edit your service' : 'Create a service';
         document.querySelector('#service-submit').textContent = service ? 'Save changes' : 'Publish service';
@@ -173,7 +274,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.querySelectorAll('[data-close-dialog]').forEach((button) => {
-        button.addEventListener('click', () => serviceDialog.close());
+        button.addEventListener('click', () => {
+            serviceDialog.close();
+            serviceForm.reset();
+        });
     });
 
     serviceDialog.addEventListener('click', (event) => {
@@ -182,26 +286,64 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    serviceForm.addEventListener('submit', (event) => {
+    serviceImageInput.addEventListener('change', async () => {
+        const files = Array.from(serviceImageInput.files || []);
+        serviceImageInput.value = '';
+        if (!files.length) return;
+
+        try {
+            const images = await Promise.all(files.map(readServiceImage));
+            draftServiceImages = [...draftServiceImages, ...images];
+            serviceFormStatus.hidden = true;
+            renderServiceImagePreviews();
+        } catch (error) {
+            serviceFormStatus.textContent = error.message;
+            serviceFormStatus.hidden = false;
+        }
+    });
+
+    serviceImagePreview.addEventListener('click', (event) => {
+        const removeButton = event.target.closest('[data-remove-service-image]');
+        if (!removeButton) return;
+        draftServiceImages.splice(Number(removeButton.dataset.removeServiceImage), 1);
+        renderServiceImagePreviews();
+    });
+
+    serviceForm.addEventListener('submit', async (event) => {
         event.preventDefault();
+        if (draftServiceImages.length < 3) {
+            serviceFormStatus.textContent = 'Add at least 3 images before saving this service.';
+            serviceFormStatus.hidden = false;
+            serviceImageInput.focus();
+            return;
+        }
+
         const id = document.querySelector('#service-id').value;
         const service = {
             id: id || (window.crypto?.randomUUID ? window.crypto.randomUUID() : String(Date.now())),
             title: document.querySelector('#service-title').value.trim(),
             description: document.querySelector('#service-description').value.trim(),
             amount: document.querySelector('#service-amount').value,
-            billing: document.querySelector('#service-billing').value
+            billing: document.querySelector('#service-billing').value,
+            images: [...draftServiceImages]
         };
 
-        if (id) {
-            services = services.map((item) => item.id === id ? service : item);
-        } else {
-            services.unshift(service);
+        const updatedServices = id
+            ? services.map((item) => item.id === id ? service : item)
+            : [service, ...services];
+
+        try {
+            localStorage.setItem(servicesKey, JSON.stringify(updatedServices));
+        } catch (error) {
+            serviceFormStatus.textContent = 'Could not save the service images in this browser. Try smaller images or remove some browser data.';
+            serviceFormStatus.hidden = false;
+            return;
         }
 
-        saveServices();
+        services = updatedServices;
         renderServices();
         serviceDialog.close();
+        serviceForm.reset();
         showSection('services');
     });
 

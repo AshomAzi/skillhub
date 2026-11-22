@@ -93,10 +93,14 @@ select:focus-visible {
     justify-content: space-between;
 }
 
+.mobile-header-actions {
+    display: none;
+}
+
 .member-navbar {
-    height: 58px;
+    height: 78px;
     border-top: 1px solid var(--line);
-    background: var(--surface);
+    background: var(--header-bg);
 }
 
 .member-navbar-inner {
@@ -107,7 +111,7 @@ select:focus-visible {
     gap: 24px;
 }
 
-.member-navbar[hidden] {
+.navbar[hidden] {
     display: none;
 }
 
@@ -1329,6 +1333,56 @@ select:focus-visible {
         width: min(100% - 48px, 720px);
     }
 
+    .member-navbar {
+        position: relative;
+        height: 78px;
+    }
+
+    .member-navbar .mobile-header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .member-navbar .hamburger-btn {
+        display: flex;
+    }
+
+    .member-navbar .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        z-index: 1;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 18px 20px;
+        border-bottom: 1px solid var(--line);
+        background: var(--page);
+        box-shadow: 0 16px 22px rgba(25, 55, 43, 0.07);
+    }
+
+    .member-navbar .nav-links.mobile-active {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .member-navbar .nav-links > a {
+        padding: 13px 4px;
+    }
+
+    .member-navbar .member-actions {
+        justify-content: space-between;
+        gap: 10px;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+    }
+
+    .member-navbar .member-actions .theme-toggle {
+        display: none;
+    }
+
     .member-nav-links {
         gap: 16px;
     }
@@ -1446,6 +1500,12 @@ select:focus-visible {
         height: 68px;
     }
 
+    .mobile-header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
     .hamburger-btn {
         display: flex;
     }
@@ -1478,6 +1538,11 @@ select:focus-visible {
         gap: 10px;
         padding-top: 12px;
         border-top: 1px solid var(--line);
+    }
+
+    .nav-actions .theme-toggle,
+    .member-actions .theme-toggle {
+        display: none;
     }
 
     .theme-toggle {

@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const memberHeader = document.querySelector('#member-header');
+    const guestHeader = document.querySelector('.navbar:not(.member-navbar)');
     const profileMenu = document.querySelector('.profile-menu');
     const profileTrigger = document.querySelector('.profile-menu-trigger');
     const profileMenuList = document.querySelector('#profile-menu-list');
@@ -9,13 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
         ? storedAuth === 'true'
         : document.body.dataset.authenticated === 'true';
 
-    if (memberHeader) {
-        memberHeader.hidden = !isAuthenticated;
-    }
+    const setHeaderState = (authenticated) => {
+        if (memberHeader) {
+            memberHeader.hidden = !authenticated;
+        }
+        if (guestHeader) {
+            guestHeader.hidden = authenticated;
+            guestHeader.querySelectorAll('.nav-actions').forEach((guestActions) => {
+                guestActions.hidden = authenticated;
+            });
+        }
+    };
 
-    document.querySelectorAll('.navbar:not(.member-navbar) .nav-actions').forEach((guestActions) => {
-        guestActions.hidden = isAuthenticated;
-    });
+    setHeaderState(isAuthenticated);
 
     if (profileTrigger && profileMenu && profileMenuList) {
         const closeProfileMenu = () => {
@@ -52,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             logoutButton.addEventListener('click', () => {
                 localStorage.setItem('skillhub-signed-in', 'false');
                 document.body.dataset.authenticated = 'false';
-                if (memberHeader) memberHeader.hidden = true;
+                setHeaderState(false);
                 closeProfileMenu();
             });
         }
@@ -89,11 +96,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const hamburger = document.querySelector('.hamburger-btn');
-    const navLinks = document.querySelector('.nav-links');
-    const navContainer = document.querySelector('.navbar');
+    document.querySelectorAll('.navbar').forEach((navContainer) => {
+        const hamburger = navContainer.querySelector('.hamburger-btn');
+        const navLinks = navContainer.querySelector('.nav-links');
+        if (!hamburger || !navLinks) return;
 
-    if (hamburger && navLinks) {
         const closeMenu = () => {
             hamburger.classList.remove('active');
             navLinks.classList.remove('mobile-active');
@@ -118,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 closeMenu();
             }
         });
-    }
+    });
 
     const searchForm = document.querySelector('#service-search');
     const searchInput = document.querySelector('#search-query');

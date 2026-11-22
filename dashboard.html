@@ -53,8 +53,15 @@
     </header>
 
     <main class="dashboard-main container">
+        <button class="dashboard-sidebar-toggle" type="button" aria-label="Open dashboard menu"
+            aria-expanded="false" aria-controls="dashboard-sidebar-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m9 18 6-6-6-6"></path>
+            </svg>
+        </button>
+        <button class="dashboard-sidebar-backdrop" type="button" aria-label="Close dashboard menu" hidden></button>
         <aside class="dashboard-sidebar" aria-label="Dashboard navigation">
-            <nav>
+            <nav id="dashboard-sidebar-nav">
                 <button class="dashboard-nav-item active" type="button" data-dashboard-section="overview">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
                     Overview
@@ -84,7 +91,7 @@
                 <div class="dashboard-stats">
                     <article><span>Active services</span><strong id="active-service-count">0</strong></article>
                     <article><span>Profile completion</span><strong id="profile-completion">0%</strong></article>
-                    <article><span>Member since</span><strong>2026</strong></article>
+                    <article><span>Completed projects</span><strong>0</strong></article>
                 </div>
                 <div class="dashboard-preview-heading">
                     <div><h2>Recent services</h2><p>Your latest listings.</p></div>
@@ -126,6 +133,10 @@
                             <input id="profile-image" type="file" accept="image/*" hidden>
                             <p>JPG or PNG, up to 5 MB.</p>
                         </div>
+                        <div class="profile-member-since">
+                            <span>Member since</span>
+                            <strong>2026</strong>
+                        </div>
                     </div>
                     <div class="profile-form-grid">
                         <div class="form-field"><label for="profile-name">Full name</label><input id="profile-name" name="name" type="text" autocomplete="name" required></div>
@@ -161,7 +172,19 @@
                 <div class="form-field"><label for="service-amount">Amount</label><input id="service-amount" name="amount" type="number" min="1" step="0.01" placeholder="10000" required></div>
                 <div class="form-field"><label for="service-billing">Charge</label><select id="service-billing" name="billing" required><option value="per service">Per service</option><option value="per hour">Per hour</option><option value="per project">Per project</option></select></div>
             </div>
+            <div class="form-field">
+                <label for="service-images">Service photos <span class="required-note">At least 3 images</span></label>
+                <label class="service-image-picker" for="service-images">
+                    <span class="service-image-picker-icon" aria-hidden="true">＋</span>
+                    <span><strong>Add service photos</strong><small>Choose three or more images to showcase your work.</small></span>
+                    <input id="service-images" name="images" type="file" accept="image/*" multiple
+                        aria-describedby="service-image-status">
+                </label>
+                <div class="service-image-preview" id="service-image-preview" aria-live="polite"></div>
+                <p class="service-image-status" id="service-image-status" role="status" aria-live="polite">0 images selected. Add at least 3.</p>
+            </div>
             <div class="dialog-actions">
+                <p class="service-form-status" id="service-form-status" role="status" aria-live="polite" hidden></p>
                 <button class="btn btn-outline" type="button" data-close-dialog>Cancel</button>
                 <button class="btn btn-primary" type="submit" id="service-submit">Publish service</button>
             </div>
