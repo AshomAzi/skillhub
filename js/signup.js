@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', (event) => {
         event.preventDefault();
-        status.textContent = 'Your details are valid. Connect this form to Django to create the account.';
+        status.textContent = 'Your details look good. Account creation is not enabled in this frontend demo yet.';
         status.hidden = false;
     });
 
