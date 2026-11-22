@@ -263,6 +263,7 @@
 
             <div class="services-grid" id="services-grid">
                 <article class="service-card" data-category="development" data-price="15000"
+                    data-description="Build a Django backend and REST API for your product, including clear endpoint structure and practical setup guidance."
                     data-search="django rest api development python backend programming">
                     <a href="#service-django" class="card-img-wrapper">
                         <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&amp;fit=crop&amp;w=700&amp;q=80"
@@ -287,6 +288,7 @@
                 </article>
 
                 <article class="service-card" data-category="design" data-price="10000"
+                    data-description="Plan a mobile app experience with user flows, wireframes, and interface layouts that make the product easier to use."
                     data-search="ui ux mobile app wireframing design product">
                     <a href="#service-product-design" class="card-img-wrapper">
                         <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&amp;fit=crop&amp;w=700&amp;q=80"
@@ -312,6 +314,7 @@
                 </article>
 
                 <article class="service-card" data-category="writing" data-price="5000"
+                    data-description="Get a careful review of academic or science writing for spelling, grammar, clarity, and consistency."
                     data-search="academic science lab report editing proofreading writing">
                     <a href="#service-proofreading" class="card-img-wrapper">
                         <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&amp;fit=crop&amp;w=700&amp;q=80"
@@ -336,6 +339,7 @@
                 </article>
 
                 <article class="service-card" data-category="development" data-price="20000"
+                    data-description="Get help setting up a Go microservice or command-line tool, with a clean project structure and practical implementation guidance."
                     data-search="golang go microservice cli setup software development programming">
                     <a href="#service-golang" class="card-img-wrapper">
                         <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&amp;fit=crop&amp;w=700&amp;q=80"
@@ -360,6 +364,7 @@
                 </article>
 
                 <article class="service-card" data-category="tutoring" data-price="8000"
+                    data-description="Work through maths and statistics topics in a one-on-one learning session tailored to your questions."
                     data-search="maths statistics tutoring lessons student">
                     <a href="#service-tutoring" class="card-img-wrapper">
                         <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&amp;fit=crop&amp;w=700&amp;q=80"
@@ -384,6 +389,7 @@
                 </article>
 
                 <article class="service-card" data-category="marketing" data-price="12000"
+                    data-description="Get help planning social media content and a practical publishing strategy for your brand."
                     data-search="social media content strategy marketing instagram">
                     <a href="#service-social" class="card-img-wrapper">
                         <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&amp;fit=crop&amp;w=700&amp;q=80"
@@ -429,6 +435,66 @@
             <a class="btn btn-dark" href="./signup.html">Get started <span aria-hidden="true">↗</span></a>
         </section>
     </main>
+
+    <dialog class="service-detail-dialog" id="service-detail-dialog" aria-labelledby="service-detail-title">
+        <div class="service-detail-content">
+            <button class="service-detail-close" type="button" aria-label="Close service details">×</button>
+            <img class="service-detail-image" id="service-detail-image" alt="">
+            <div class="service-detail-main">
+                <span class="section-kicker" id="service-detail-category"></span>
+                <h2 id="service-detail-title"></h2>
+                <p class="service-detail-description" id="service-detail-description"></p>
+                <p class="service-detail-price"><span>Starting at</span><strong id="service-detail-price"></strong></p>
+                <section class="provider-profile" aria-labelledby="provider-profile-heading">
+                    <h3 id="provider-profile-heading">About the provider</h3>
+                    <div class="provider-profile-identity">
+                        <span class="provider-profile-avatar" id="provider-profile-avatar" aria-hidden="true"></span>
+                        <div>
+                            <strong id="provider-profile-name"></strong>
+                            <span id="provider-profile-role"></span>
+                        </div>
+                    </div>
+                    <p id="provider-profile-bio"></p>
+                    <small>Email and phone number are kept private.</small>
+                    <button class="service-report-button" type="button" id="open-service-report">Report this service</button>
+                </section>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog class="service-report-dialog" id="service-report-dialog" aria-labelledby="service-report-heading">
+        <form id="service-report-form">
+            <div class="service-report-heading">
+                <div>
+                    <span class="section-kicker">HELP KEEP SKILLHUB SAFE</span>
+                    <h2 id="service-report-heading">Report this service</h2>
+                </div>
+                <button class="service-detail-close" type="button" data-close-report aria-label="Close report form">×</button>
+            </div>
+            <p class="service-reporting-service">Reporting: <strong id="report-service-title"></strong></p>
+            <p class="service-report-notice">This form is not connected to a review team. Reports are not saved or sent.</p>
+            <div class="service-report-field">
+                <label for="report-reason">Why are you reporting this service?</label>
+                <select id="report-reason" name="reason" required>
+                    <option value="">Choose a reason</option>
+                    <option value="suspected-fraud">Suspected fraud or scam</option>
+                    <option value="misleading-listing">Misleading service description</option>
+                    <option value="prohibited-content">Inappropriate or prohibited content</option>
+                    <option value="other">Other concern</option>
+                </select>
+            </div>
+            <div class="service-report-field">
+                <label for="report-details">Additional details <span>(optional)</span></label>
+                <textarea id="report-details" name="details" maxlength="500" rows="4"
+                    placeholder="Share information that could help a reviewer understand your concern."></textarea>
+            </div>
+            <p class="service-report-status" id="service-report-status" role="status" aria-live="polite" hidden></p>
+            <div class="service-report-actions">
+                <button class="btn btn-outline" type="button" data-close-report>Cancel</button>
+                <button class="btn btn-primary" type="submit">Submit report</button>
+            </div>
+        </form>
+    </dialog>
 
     <footer class="site-footer">
         <div class="footer-main container">

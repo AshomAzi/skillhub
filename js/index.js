@@ -205,6 +205,105 @@ document.addEventListener('DOMContentLoaded', () => {
         filterServices();
     }
 
+    const servicesGrid = document.querySelector('#services-grid');
+    const serviceDetailDialog = document.querySelector('#service-detail-dialog');
+
+    if (servicesGrid && serviceDetailDialog) {
+        const serviceReportDialog = document.querySelector('#service-report-dialog');
+        const serviceReportForm = document.querySelector('#service-report-form');
+        const reportServiceTitle = document.querySelector('#report-service-title');
+        const reportReason = document.querySelector('#report-reason');
+        const reportDetails = document.querySelector('#report-details');
+        const reportStatus = document.querySelector('#service-report-status');
+        const openReportButton = document.querySelector('#open-service-report');
+        const detailImage = document.querySelector('#service-detail-image');
+        const detailCategory = document.querySelector('#service-detail-category');
+        const detailTitle = document.querySelector('#service-detail-title');
+        const detailDescription = document.querySelector('#service-detail-description');
+        const detailPrice = document.querySelector('#service-detail-price');
+        const providerAvatar = document.querySelector('#provider-profile-avatar');
+        const providerName = document.querySelector('#provider-profile-name');
+        const providerRole = document.querySelector('#provider-profile-role');
+        const providerBio = document.querySelector('#provider-profile-bio');
+        let reportableService = null;
+
+        servicesGrid.addEventListener('click', (event) => {
+            const card = event.target.closest('.service-card');
+            if (!card || event.target.closest('.favorite-btn')) return;
+
+            event.preventDefault();
+            const title = card.querySelector('.service-title')?.textContent.trim() || 'Service details';
+            const category = card.dataset.category || '';
+            const categoryLabel = category ? `${category.charAt(0).toUpperCase()}${category.slice(1)}` : 'Service';
+            const ownerInfo = card.querySelector('.owner-info');
+            const ownerAvatar = ownerInfo?.querySelector('.owner-avatar');
+            const image = card.querySelector('.card-img-wrapper img');
+            const provider = ownerInfo?.querySelector('.owner-name')?.textContent.trim() || 'SkillHub provider';
+
+            reportableService = title;
+
+            detailImage.src = image?.src || '';
+            detailImage.alt = image?.alt || '';
+            detailCategory.textContent = categoryLabel;
+            detailTitle.textContent = title;
+            detailDescription.textContent = card.dataset.description || 'More service details will be shared soon.';
+            detailPrice.textContent = card.querySelector('.price-tag')?.textContent.trim() || 'Price available on request';
+            providerAvatar.textContent = ownerAvatar?.textContent.trim() || '';
+            providerAvatar.className = `provider-profile-avatar ${ownerAvatar?.className || ''}`;
+            providerName.textContent = provider;
+            providerRole.textContent = `${categoryLabel} provider`;
+            providerBio.textContent = 'This provider has not added a public bio yet.';
+            serviceDetailDialog.showModal();
+        });
+
+        serviceDetailDialog.querySelector('.service-detail-close').addEventListener('click', () => {
+            serviceDetailDialog.close();
+        });
+
+        serviceDetailDialog.addEventListener('click', (event) => {
+            if (event.target === serviceDetailDialog) {
+                serviceDetailDialog.close();
+            }
+        });
+
+        if (serviceReportDialog && serviceReportForm && reportServiceTitle && reportReason
+            && reportDetails && reportStatus && openReportButton) {
+            const closeReport = () => {
+                serviceReportDialog.close();
+                serviceDetailDialog.showModal();
+            };
+
+            openReportButton.addEventListener('click', () => {
+                reportServiceTitle.textContent = reportableService || 'Selected service';
+                reportReason.value = '';
+                reportDetails.value = '';
+                reportStatus.hidden = true;
+                delete reportStatus.dataset.state;
+                serviceDetailDialog.close();
+                serviceReportDialog.showModal();
+                reportReason.focus();
+            });
+
+            serviceReportDialog.querySelectorAll('[data-close-report]').forEach((button) => {
+                button.addEventListener('click', closeReport);
+            });
+
+            serviceReportForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                if (!reportableService) {
+                    reportStatus.textContent = 'Select a service before submitting a report.';
+                    reportStatus.dataset.state = 'error';
+                    reportStatus.hidden = false;
+                    return;
+                }
+
+                reportStatus.textContent = 'This form is not connected yet. Your report was not saved or sent.';
+                reportStatus.dataset.state = 'error';
+                reportStatus.hidden = false;
+            });
+        }
+    }
+
     document.querySelectorAll('.favorite-btn').forEach((button) => {
         button.addEventListener('click', () => {
             const isSaved = button.getAttribute('aria-pressed') === 'true';
