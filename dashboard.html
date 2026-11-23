@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#ebf1e4">
     <meta name="description" content="Manage your SkillHub profile and services.">
     <title>Dashboard - SkillHub</title>
-    <link rel="icon" type="image/svg+xml" href="./img/skillhub-favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="./assets/img/skillhub-favicon.svg">
     <script>
         if (localStorage.getItem('skillhub-theme') === 'dark') {
             document.documentElement.dataset.theme = 'dark';
@@ -16,15 +16,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/dashboard.css">
 </head>
 
 <body class="dashboard-page" data-authenticated="true">
     <header class="dashboard-topbar">
         <div class="dashboard-topbar-inner container">
             <a href="./index.html" class="logo" aria-label="SkillHub home">
-                <span class="logo-mark" aria-hidden="true"><img src="./img/skillhub-logo.svg" alt=""></span>
+                <span class="logo-mark" aria-hidden="true"><img src="./assets/img/skillhub-logo.svg" alt=""></span>
                 skill<span>hub</span>
             </a>
             <div class="dashboard-topbar-actions">
@@ -35,7 +35,7 @@
                 </button>
                 <div class="profile-menu">
                     <button class="profile-menu-trigger" type="button" aria-expanded="false" aria-controls="dashboard-profile-menu" aria-label="Open profile menu">
-                        <img class="dashboard-avatar" src="./img/profile-avatar.svg" alt="">
+                        <img class="dashboard-avatar" src="./assets/img/profile-avatar.svg" alt="">
                         <svg class="profile-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 9.5 5 5 5-5"></path></svg>
                     </button>
                     <div class="profile-menu-list" id="dashboard-profile-menu" role="menu" hidden>
@@ -127,7 +127,7 @@
                 </div>
                 <form class="profile-form" id="profile-form">
                     <div class="profile-photo-row">
-                        <img id="profile-preview" src="./img/profile-avatar.svg" alt="Profile preview">
+                        <img id="profile-preview" src="./assets/img/profile-avatar.svg" alt="Profile preview">
                         <div>
                             <label class="profile-photo-button" for="profile-image">Change photo</label>
                             <input id="profile-image" type="file" accept="image/*" hidden>
