@@ -40,7 +40,7 @@
 .signup-layout {
     display: grid;
     grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
-    align-items: center;
+    align-items: top;
     gap: clamp(42px, 7vw, 88px);
     max-width: 1050px;
 }
@@ -48,7 +48,7 @@
 .signup-story {
     position: relative;
     display: flex;
-    min-height: 570px;
+    max-height: 570px;
     flex-direction: column;
     overflow: hidden;
     padding: 43px 38px 28px;
