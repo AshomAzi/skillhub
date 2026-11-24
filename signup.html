@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +9,7 @@
     <meta name="theme-color" content="#ebf1e4">
     <meta name="description" content="Create your SkillHub account and find your people.">
     <title>Join SkillHub — Find your people</title>
-    <link rel="icon" type="image/svg+xml" href="./assets/img/skillhub-favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="{% static '/assets/img/skillhub-favicon.svg' %}">
     <script>
         if (localStorage.getItem('skillhub-theme') === 'dark') {
             document.documentElement.dataset.theme = 'dark';
@@ -18,15 +20,15 @@
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/index.css">
-    <link rel="stylesheet" href="./assets/css/signup.css">
-    <link rel="stylesheet" href="./assets/css/signin.css">
+    <link rel="stylesheet" href="{% static '/assets/css/index.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/signup.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/signin.css' %}">
 </head>
 
 <body class="signup-page">
     <header class="auth-topbar container">
-        <a href="./index.html" class="logo" aria-label="SkillHub home">
-            <span class="logo-mark" aria-hidden="true"><img src="./assets/img/skillhub-logo.svg" alt=""></span>
+        <a href="{% url 'home' %}" class="logo" aria-label="SkillHub home">
+            <span class="logo-mark" aria-hidden="true"><img src="{% static '/assets/img/skillhub-logo.svg' %}" alt=""></span>
             skill<span>hub</span>
         </a>
         <div class="auth-topbar-actions">
@@ -146,14 +148,14 @@
                 <a class="signin-create-link" href="./signin.html">Sign in to your account <span
                         aria-hidden="true">→</span></a>
                 <p class="signup-footnote">Your details stay yours. We’ll never share them without your permission.</p>
-                <a class="back-to-marketplace" href="./index.html"><span aria-hidden="true">←</span> Back to the
+                <a class="back-to-marketplace" href="{% url 'home' %}"><span aria-hidden="true">←</span> Back to the
                     marketplace</a>
             </section>
         </div>
     </main>
 
-    <script src="./assets/js/index.js"></script>
-    <script src="./assets/js/signup.js"></script>
+    <script src="{% static '/assets/js/index.js' %}"></script>
+    <script src="{% static '/assets/js/signup.js' %}"></script>
 </body>
 
 </html>

@@ -26,7 +26,7 @@
 
 <body data-authenticated="true">
     <header class="site-header">
-        <nav class="navbar container" aria-label="Main navigation">
+        <nav class="navbar container" aria-label="Main navigation" style="display: flex;">
             <a href="#" class="logo" aria-label="SkillHub home">
                 <span class="logo-mark" aria-hidden="true"><img src="{% static '/assets/img/skillhub-logo.svg' %}"
                         alt=""></span>
@@ -68,7 +68,7 @@
                             </path>
                         </svg>
                     </button>
-                    <a href="./signup.html" class="btn btn-primary btn-small">Join SkillHub <span
+                    <a href="{% url 'signup' %}" class="btn btn-primary btn-small">Join SkillHub <span
                             aria-hidden="true">↗</span></a>
                 </div>
             </div>
@@ -310,7 +310,7 @@
                 <h2>Make something good happen.</h2>
                 <p>Find your next collaborator, or share what you do with a community that gets it.</p>
             </div>
-            <a class="btn btn-dark" href="./signup.html">Get started <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-dark" href="{% url 'signup' %}">Get started <span aria-hidden="true">↗</span></a>
         </section>
     </main>
 
@@ -386,7 +386,7 @@
             </div>
             <div class="footer-column">
                 <h3>Discover</h3><a href="#services">Explore services</a><a href="#how-it-works">How it works</a><a
-                    href="./signup.html">Become a seller</a>
+                    href="{% url 'signup' %}">Become a seller</a>
             </div>
             <div class="footer-column">
                 <h3>Community</h3><a href="#join">About SkillHub</a><a href="#join">Help &amp; support</a><a
