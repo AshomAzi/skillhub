@@ -1,10 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('#signup-form');
     const password = document.querySelector('#password');
     const confirmPassword = document.querySelector('#confirm-password');
     const strengthMeter = document.querySelector('#strength-meter');
     const strengthLabel = document.querySelector('#strength-label');
-    const status = document.querySelector('#signup-status');
 
     document.querySelectorAll('[data-password-toggle]').forEach((button) => {
         button.addEventListener('click', () => {
@@ -18,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    if (!form || !password || !confirmPassword || !strengthMeter || !strengthLabel || !status) return;
+    if (!password || !confirmPassword || !strengthMeter || !strengthLabel) return;
 
     const updatePasswordMatch = () => {
         confirmPassword.setCustomValidity(
@@ -45,16 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updatePasswordMatch();
     });
     confirmPassword.addEventListener('input', updatePasswordMatch);
-
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        localStorage.setItem('skillhub-signed-in', 'true');
-        status.textContent = 'Your account is ready.';
-        status.hidden = false;
-        window.setTimeout(() => {
-            window.location.href = './dashboard.html';
-        }, 500);
-    });
 
     updatePasswordStrength();
 });
