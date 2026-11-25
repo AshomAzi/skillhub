@@ -82,7 +82,14 @@
                     <p>It only takes a minute to get started.</p>
                 </div>
 
-                <form class="signup-form" id="signup-form" method="post">
+                <form class="signup-form" id="signup-form" method="post" novalidate>
+                    {% if messages %}
+                    <div class="signup-status" role="alert" style="color: red;">
+                        {% for message in messages %}
+                        <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                     {% csrf_token %}
                     <div class="form-field">
                         <label for="firstname">Firstname</label>
